@@ -1,0 +1,7 @@
+{
+  "name": "@labcapturebot/shared",
+  "version": "1.0.0",
+  "description": "Tipos compartilhados entre bot e API",
+  "main": "types/index.ts",
+  "types": "types/index.ts"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "labcapturebot",
+  "version": "1.0.0",
+  "description": "Sistema de captura de casos laboratoriais via Telegram",
+  "private": true,
+  "workspaces": [
+    "bot",
+    "api",
+    "shared"
+  ],
+  "scripts": {
+    "dev:bot": "npm run dev --workspace=bot",
+    "dev:api": "npm run dev --workspace=api",
+    "build": "npm run build --workspaces",
+    "test": "npm test --workspaces --if-present",
+    "lint": "eslint . --ext .ts",
+    "clean": "rm -rf bot/dist api/dist bot/node_modules api/node_modules shared/node_modules node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
