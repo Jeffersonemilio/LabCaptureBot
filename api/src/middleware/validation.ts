@@ -3,7 +3,7 @@ import { ZodSchema } from 'zod';
 import { ValidationError } from '../utils/errors';
 
 export function validateBody(schema: ZodSchema) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, _res: Response, next: NextFunction) => {
     try {
       req.body = schema.parse(req.body);
       next();
@@ -14,7 +14,7 @@ export function validateBody(schema: ZodSchema) {
 }
 
 export function validateQuery(schema: ZodSchema) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, _res: Response, next: NextFunction) => {
     try {
       req.query = schema.parse(req.query);
       next();

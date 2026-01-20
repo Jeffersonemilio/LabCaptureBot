@@ -6,7 +6,7 @@ export function errorHandler(
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) {
   if (err instanceof AppError) {
     logger.warn('Application error', {
@@ -30,7 +30,7 @@ export function errorHandler(
     method: req.method,
   });
 
-  res.status(500).json({
+  return res.status(500).json({
     error: 'INTERNAL_ERROR',
     message: 'An unexpected error occurred',
   });

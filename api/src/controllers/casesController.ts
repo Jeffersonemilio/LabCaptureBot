@@ -17,9 +17,9 @@ export class CasesController {
         data.telegram_chat_id
       );
 
-      res.status(201).json(result);
+      return res.status(201).json(result);
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -36,9 +36,9 @@ export class CasesController {
         data.telegram.user_id
       );
 
-      res.status(201).json(result);
+      return res.status(201).json(result);
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -64,9 +64,9 @@ export class CasesController {
         req.file.mimetype
       );
 
-      res.status(201).json(result);
+      return res.status(201).json(result);
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -77,9 +77,9 @@ export class CasesController {
 
       const result = await caseService.closeCase(caseId, data.closed_by);
 
-      res.status(200).json(result);
+      return res.status(200).json(result);
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -99,9 +99,9 @@ export class CasesController {
         });
       }
 
-      res.status(200).json(result);
+      return res.status(200).json(result);
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 }

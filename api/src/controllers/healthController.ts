@@ -4,7 +4,7 @@ import { minioClient } from '../config/minio';
 import { config } from '../config/env';
 
 export class HealthController {
-  async check(req: Request, res: Response) {
+  async check(_req: Request, res: Response) {
     const health = {
       status: 'ok',
       timestamp: new Date().toISOString(),
