@@ -53,6 +53,7 @@ export class CasesController {
       const fileType = req.body.file_type as 'image' | 'document' | 'video';
       const telegramFileId = req.body.telegram_file_id;
       const telegramMessageId = parseInt(req.body.telegram_message_id, 10);
+      const mimeType = req.body.mime_type || req.file.mimetype;
 
       const result = await caseService.addFile(
         caseId,
@@ -61,7 +62,7 @@ export class CasesController {
         telegramFileId,
         telegramMessageId,
         req.file.originalname,
-        req.file.mimetype
+        mimeType
       );
 
       return res.status(201).json(result);

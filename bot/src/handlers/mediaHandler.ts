@@ -40,15 +40,22 @@ export function setupMediaHandlers(bot: Telegraf) {
 
       const fileBuffer = Buffer.from(response.data);
 
-      // Enviar para API
+      // Enviar para API com mime_type (Telegram sempre usa JPEG para fotos)
       await apiClient.addFile(caseId, fileBuffer, {
         file_type: 'image',
         telegram_file_id: fileId,
         telegram_message_id: messageId,
         telegram_user_id: userId,
+        mime_type: 'image/jpeg',
       });
 
-      await (ctx.react as any)('✅');
+      // Tentar reagir, mas não falhar se não funcionar
+      try {
+        await (ctx.react as any)('✅');
+      } catch (error) {
+        // Silently ignore reaction errors
+        logger.debug('Could not add reaction', { error });
+      }
 
       logger.info('Photo added to case', {
         userId,
@@ -82,8 +89,10 @@ export function setupMediaHandlers(bot: Telegraf) {
       }
 
       const fileId = document.file_id;
+      const mimeType = document.mime_type;
+      const fileName = document.file_name;
 
-      logger.info('Processing document', { userId, caseId, fileId });
+      logger.info('Processing document', { userId, caseId, fileId, fileName });
 
       // Baixar arquivo do Telegram
       const fileUrl = await ctx.telegram.getFileLink(fileId);
@@ -99,9 +108,16 @@ export function setupMediaHandlers(bot: Telegraf) {
         telegram_file_id: fileId,
         telegram_message_id: messageId,
         telegram_user_id: userId,
+        mime_type: mimeType,
+        file_name: fileName,
       });
 
-      await (ctx.react as any)('✅');
+      // Tentar reagir, mas não falhar se não funcionar
+      try {
+        await (ctx.react as any)('✅');
+      } catch (error) {
+        logger.debug('Could not add reaction', { error });
+      }
 
       logger.info('Document added to case', {
         userId,
@@ -138,8 +154,10 @@ export function setupMediaHandlers(bot: Telegraf) {
       }
 
       const fileId = video.file_id;
+      const mimeType = video.mime_type;
+      const fileName = video.file_name;
 
-      logger.info('Processing video', { userId, caseId, fileId });
+      logger.info('Processing video', { userId, caseId, fileId, fileName });
 
       // Baixar arquivo do Telegram
       const fileUrl = await ctx.telegram.getFileLink(fileId);
@@ -155,9 +173,16 @@ export function setupMediaHandlers(bot: Telegraf) {
         telegram_file_id: fileId,
         telegram_message_id: messageId,
         telegram_user_id: userId,
+        mime_type: mimeType,
+        file_name: fileName,
       });
 
-      await (ctx.react as any)('✅');
+      // Tentar reagir, mas não falhar se não funcionar
+      try {
+        await (ctx.react as any)('✅');
+      } catch (error) {
+        logger.debug('Could not add reaction', { error });
+      }
 
       logger.info('Video added to case', {
         userId,

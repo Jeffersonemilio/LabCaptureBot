@@ -80,14 +80,18 @@ export class ApiClient {
   async addFile(
     caseId: string,
     fileBuffer: Buffer,
-    metadata: AddFileRequest
+    metadata: AddFileRequest & { mime_type?: string; file_name?: string }
   ): Promise<AddFileResponse> {
     return retryWithBackoff(async () => {
       const formData = new FormData();
 
       // Create a Blob from Buffer for FormData
       const blob = new Blob([fileBuffer]);
-      formData.append('file', blob, 'file');
+      // Use file_name if available, otherwise use default based on type
+      const filename = metadata.file_name ||
+        (metadata.file_type === 'image' ? 'photo.jpg' :
+         metadata.file_type === 'video' ? 'video.mp4' : 'file');
+      formData.append('file', blob, filename);
 
       // Add metadata
       formData.append('file_type', metadata.file_type);
@@ -97,6 +101,11 @@ export class ApiClient {
         metadata.telegram_message_id.toString()
       );
       formData.append('telegram_user_id', metadata.telegram_user_id.toString());
+
+      // Add optional mime_type if provided
+      if (metadata.mime_type) {
+        formData.append('mime_type', metadata.mime_type);
+      }
 
       const response = await this.client.post<AddFileResponse>(
         `/cases/${caseId}/file`,

@@ -180,7 +180,8 @@ export class CaseService {
       caseId,
       fileType,
       fileBuffer,
-      originalFilename
+      originalFilename,
+      mimeType
     );
 
     // Save file metadata to database
