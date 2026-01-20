@@ -7,7 +7,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "migrate": "tsx src/migrations/run-migrations.ts",
+    "migrate": "node dist/migrations/run-migrations.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
