@@ -50,7 +50,7 @@ export class CasesController {
         throw new NotFoundError('No file uploaded');
       }
 
-      const fileType = req.body.file_type as 'image' | 'document' | 'video';
+      const fileType = req.body.file_type as 'image' | 'document' | 'video' | 'audio' | 'voice' | 'video_note' | 'sticker';
       const telegramFileId = req.body.telegram_file_id;
       const telegramMessageId = parseInt(req.body.telegram_message_id, 10);
       const mimeType = req.body.mime_type || req.file.mimetype;

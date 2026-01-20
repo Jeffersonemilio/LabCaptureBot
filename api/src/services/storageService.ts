@@ -6,22 +6,41 @@ import { Readable } from 'stream';
 
 export class StorageService {
   private readonly MIME_TO_EXT: Record<string, string> = {
+    // Images
     'image/jpeg': '.jpg',
     'image/jpg': '.jpg',
     'image/png': '.png',
     'image/gif': '.gif',
     'image/webp': '.webp',
     'image/bmp': '.bmp',
+    // Videos
     'video/mp4': '.mp4',
     'video/quicktime': '.mov',
     'video/x-msvideo': '.avi',
     'video/mpeg': '.mpeg',
+    'video/webm': '.webm',
+    // Audio
+    'audio/mpeg': '.mp3',
+    'audio/mp3': '.mp3',
+    'audio/ogg': '.ogg',
+    'audio/wav': '.wav',
+    'audio/x-wav': '.wav',
+    'audio/aac': '.aac',
+    'audio/mp4': '.m4a',
+    'audio/x-m4a': '.m4a',
+    'audio/flac': '.flac',
+    // Documents
     'application/pdf': '.pdf',
     'application/zip': '.zip',
     'application/x-rar-compressed': '.rar',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation': '.pptx',
+    'application/msword': '.doc',
+    'application/vnd.ms-excel': '.xls',
     'text/plain': '.txt',
+    // Stickers
+    'application/x-tgsticker': '.tgs',
   };
 
   /**
@@ -29,7 +48,7 @@ export class StorageService {
    */
   async uploadFile(
     caseId: string,
-    fileType: 'image' | 'document' | 'video',
+    fileType: 'image' | 'document' | 'video' | 'audio' | 'voice' | 'video_note' | 'sticker',
     fileBuffer: Buffer,
     originalFilename?: string,
     mimeType?: string
@@ -118,6 +137,10 @@ export class StorageService {
     // 3. Fallback based on fileType
     if (fileType === 'image') return '.jpg';
     if (fileType === 'video') return '.mp4';
+    if (fileType === 'video_note') return '.mp4';
+    if (fileType === 'audio') return '.mp3';
+    if (fileType === 'voice') return '.ogg';
+    if (fileType === 'sticker') return '.webp';
     if (fileType === 'document') return '.pdf';
 
     return '';

@@ -157,7 +157,7 @@ export class CaseService {
    */
   async addFile(
     caseId: string,
-    fileType: 'image' | 'document' | 'video',
+    fileType: 'image' | 'document' | 'video' | 'audio' | 'voice' | 'video_note' | 'sticker',
     fileBuffer: Buffer,
     telegramFileId: string,
     telegramMessageId: number,

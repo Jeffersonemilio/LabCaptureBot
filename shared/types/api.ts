@@ -26,7 +26,7 @@ export interface AddMessageResponse {
 }
 
 export interface AddFileRequest {
-  file_type: 'image' | 'document' | 'video';
+  file_type: 'image' | 'document' | 'video' | 'audio' | 'voice' | 'video_note' | 'sticker';
   telegram_file_id: string;
   telegram_message_id: number;
   telegram_user_id: number;

@@ -103,7 +103,7 @@ export class DatabaseService {
   // Files
   async addFile(
     caseId: string,
-    fileType: 'image' | 'document' | 'video',
+    fileType: 'image' | 'document' | 'video' | 'audio' | 'voice' | 'video_note' | 'sticker',
     minioBucket: string,
     minioObjectKey: string,
     telegramFileId: string,
