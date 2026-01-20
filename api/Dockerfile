@@ -29,7 +29,7 @@ COPY shared/package.json ./shared/
 COPY api/package.json ./api/
 
 # Install only production dependencies
-RUN npm ci --workspace=api --workspace=shared --only=production
+RUN npm ci --workspace=api --workspace=shared --omit=dev
 
 # Copy built files
 COPY --from=builder /app/api/dist ./api/dist

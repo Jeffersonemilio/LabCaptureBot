@@ -29,7 +29,7 @@ COPY shared/package.json ./shared/
 COPY bot/package.json ./bot/
 
 # Install only production dependencies
-RUN npm ci --workspace=bot --workspace=shared --only=production
+RUN npm ci --workspace=bot --workspace=shared --omit=dev
 
 # Copy built files
 COPY --from=builder /app/bot/dist ./bot/dist
