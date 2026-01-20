@@ -11,7 +11,7 @@ export function setupMessageHandlers(bot: Telegraf) {
       const userId = ctx.from?.id;
       const chatId = ctx.chat?.id;
       const messageId = ctx.message?.message_id;
-      const text = 'text' in ctx.message ? ctx.message.text : '';
+      const text = ctx.message && 'text' in ctx.message ? ctx.message.text : '';
 
       if (!userId || !chatId || !messageId || !text) {
         return;

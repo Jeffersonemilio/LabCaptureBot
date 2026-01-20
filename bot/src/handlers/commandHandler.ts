@@ -1,5 +1,4 @@
 import { Telegraf, Context } from 'telegraf';
-import { message } from 'telegraf/filters';
 import { apiClient } from '../services/apiClient';
 import { caseManager } from '../services/caseManager';
 import { logger } from '../utils/logger';

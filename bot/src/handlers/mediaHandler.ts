@@ -11,7 +11,7 @@ export function setupMediaHandlers(bot: Telegraf) {
     try {
       const userId = ctx.from?.id;
       const messageId = ctx.message?.message_id;
-      const photos = 'photo' in ctx.message ? ctx.message.photo : [];
+      const photos = ctx.message && 'photo' in ctx.message ? ctx.message.photo : [];
 
       if (!userId || !messageId || photos.length === 0) {
         return;
@@ -48,7 +48,7 @@ export function setupMediaHandlers(bot: Telegraf) {
         telegram_user_id: userId,
       });
 
-      await ctx.react('✅');
+      await (ctx.react as any)('✅');
 
       logger.info('Photo added to case', {
         userId,
@@ -66,7 +66,7 @@ export function setupMediaHandlers(bot: Telegraf) {
     try {
       const userId = ctx.from?.id;
       const messageId = ctx.message?.message_id;
-      const document = 'document' in ctx.message ? ctx.message.document : null;
+      const document = ctx.message && 'document' in ctx.message ? ctx.message.document : null;
 
       if (!userId || !messageId || !document) {
         return;
@@ -101,7 +101,7 @@ export function setupMediaHandlers(bot: Telegraf) {
         telegram_user_id: userId,
       });
 
-      await ctx.react('✅');
+      await (ctx.react as any)('✅');
 
       logger.info('Document added to case', {
         userId,
@@ -122,7 +122,7 @@ export function setupMediaHandlers(bot: Telegraf) {
     try {
       const userId = ctx.from?.id;
       const messageId = ctx.message?.message_id;
-      const video = 'video' in ctx.message ? ctx.message.video : null;
+      const video = ctx.message && 'video' in ctx.message ? ctx.message.video : null;
 
       if (!userId || !messageId || !video) {
         return;
@@ -157,7 +157,7 @@ export function setupMediaHandlers(bot: Telegraf) {
         telegram_user_id: userId,
       });
 
-      await ctx.react('✅');
+      await (ctx.react as any)('✅');
 
       logger.info('Video added to case', {
         userId,
