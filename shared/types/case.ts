@@ -21,7 +21,7 @@ export interface CaseMessage {
 export interface CaseFile {
   id: string;
   case_id: string;
-  file_type: 'image' | 'document' | 'video';
+  file_type: 'image' | 'document' | 'video' | 'audio' | 'voice' | 'video_note' | 'sticker';
   original_filename: string | null;
   minio_bucket: string;
   minio_object_key: string;

@@ -7,6 +7,7 @@ const migrations = [
   '001_create_cases_table.sql',
   '002_create_case_messages_table.sql',
   '003_create_case_files_table.sql',
+  '004_add_audio_file_types.sql',
 ];
 
 async function runMigrations() {
